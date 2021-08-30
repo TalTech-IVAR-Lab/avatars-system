@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ea9f3b6c3961c4c93c18a96293fc4f, type: 3}
+  m_Name: OpenVR_OculusQuest_Right
+  m_EditorClassIdentifier: 
+  sdkRegex: openvr
+  controllerRegex: oculus quest
+  hand: 0
+  mirrorPlane: 2
+  pose:
+    position: {x: 0.03282139, y: 0.03572053, z: -0.16483405}
+    rotation: {x: 0.37927926, y: -0.05509232, z: 0.07847313, w: 0.9203011}
+  comment: Pose modifier for new Oculus Touch S controllers in OpenVR for Quest.

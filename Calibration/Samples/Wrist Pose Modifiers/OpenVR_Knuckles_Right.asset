@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ea9f3b6c3961c4c93c18a96293fc4f, type: 3}
+  m_Name: OpenVR_Knuckles_Right
+  m_EditorClassIdentifier: 
+  sdkRegex: openvr
+  controllerRegex: knuckles
+  hand: 0
+  mirrorPlane: 2
+  pose:
+    position: {x: 0.04218792, y: 0.036941856, z: -0.16436307}
+    rotation: {x: 0.38186228, y: -0.07572913, z: 0.08402756, w: 0.91727084}
+  comment: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ea9f3b6c3961c4c93c18a96293fc4f, type: 3}
+  m_Name: OpenVR_ViveWand_Right
+  m_EditorClassIdentifier: 
+  sdkRegex: openvr
+  controllerRegex: vive controller mv
+  hand: 0
+  mirrorPlane: 2
+  pose:
+    position: {x: 0.040808372, y: 0.031677976, z: -0.15181404}
+    rotation: {x: 0.3793391, y: -0.064585626, z: 0.08992571, w: 0.9186098}
+  comment: 

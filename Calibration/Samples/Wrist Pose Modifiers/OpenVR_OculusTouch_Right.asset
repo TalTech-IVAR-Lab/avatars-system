@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ea9f3b6c3961c4c93c18a96293fc4f, type: 3}
+  m_Name: OpenVR_OculusTouch_Right
+  m_EditorClassIdentifier: 
+  sdkRegex: openvr
+  controllerRegex: oculus rift cv1
+  hand: 0
+  mirrorPlane: 2
+  pose:
+    position: {x: 0.04042735, y: 0.039362743, z: -0.15642473}
+    rotation: {x: 0.44391528, y: -0.05692608, z: 0.08539507, w: 0.8901721}
+  comment: Pose modifier for classic Oculus Touch controllers in OpenVR.
