@@ -1,9 +1,9 @@
 ﻿namespace Games.NoSoySauce.Avatars.Hands
 {
-	// using Photon.Pun;
-    // using Games.NoSoySauce.Networking.Multiplayer;
+	using Photon.Pun;
+    using Games.NoSoySauce.Networking.Multiplayer;
 
-    public class NetworkedAvatarHandController : AvatarHandController//, IPunObservable
+    public class NetworkedAvatarHandController : AvatarHandController, IPunObservable
     {
         /// <summary>
         /// Current target values of all five fingers encoded in a 5-byte array for lighter network transfer.
@@ -18,38 +18,38 @@
         /// </remarks>
         protected byte[] encodedFingerTargets = new byte[5];
 
-        // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        // {
-        //     if (stream.IsWriting)
-        //     {
-        //         EncodeFingerTargets();
-        //
-        //         stream.SendNext(encodedFingerTargets[0]);
-        //         stream.SendNext(encodedFingerTargets[1]);
-        //         stream.SendNext(encodedFingerTargets[2]);
-        //         stream.SendNext(encodedFingerTargets[3]);
-        //         stream.SendNext(encodedFingerTargets[4]);
-        //     }
-        //     else
-        //     {
-        //         encodedFingerTargets[0] = (byte)stream.ReceiveNext();
-        //         encodedFingerTargets[1] = (byte)stream.ReceiveNext();
-        //         encodedFingerTargets[2] = (byte)stream.ReceiveNext();
-        //         encodedFingerTargets[3] = (byte)stream.ReceiveNext();
-        //         encodedFingerTargets[4] = (byte)stream.ReceiveNext();
-        //
-        //         DecodeFingerTargets();
-        //     }
-        // }
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                EncodeFingerTargets();
+
+                stream.SendNext(encodedFingerTargets[0]);
+                stream.SendNext(encodedFingerTargets[1]);
+                stream.SendNext(encodedFingerTargets[2]);
+                stream.SendNext(encodedFingerTargets[3]);
+                stream.SendNext(encodedFingerTargets[4]);
+            }
+            else
+            {
+                encodedFingerTargets[0] = (byte)stream.ReceiveNext();
+                encodedFingerTargets[1] = (byte)stream.ReceiveNext();
+                encodedFingerTargets[2] = (byte)stream.ReceiveNext();
+                encodedFingerTargets[3] = (byte)stream.ReceiveNext();
+                encodedFingerTargets[4] = (byte)stream.ReceiveNext();
+
+                DecodeFingerTargets();
+            }
+        }
 
         /// <inheritdoc />
         protected override void SubscribeToFingerActions()
         {
-            // if (MultiplayerManager.IsLocal(this) == false)
-            // {
-            //     /// Do not subscribe to inputs if not controlled locally.
-            //     return;
-            // }
+            if (MultiplayerManager.IsLocal(this) == false)
+            {
+                /// Do not subscribe to inputs if not controlled locally.
+                return;
+            }
 
             base.SubscribeToFingerActions();
         }

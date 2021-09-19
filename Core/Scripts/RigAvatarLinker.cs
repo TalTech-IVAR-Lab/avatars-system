@@ -2,8 +2,8 @@
 {
     using System;
     using Malimbe.XmlDocumentationAttribute;
-    // using Networking.Multiplayer;
-    // using Photon.Pun;
+    using Networking.Multiplayer;
+    using Photon.Pun;
     using UnityEngine;
 
     /// <summary>
@@ -38,19 +38,18 @@
             }
 
             // Networked call.
-            // TODO: update when MultiFrame is ready
-            // if (PhotonNetwork.InRoom && MultiplayerManager.IsLocal(gameObject))
-            // {
-            //     var avatarView = MultiplayerManager.GetPhotonView(avatar);
-            //     if (avatarView == null)
-            //     {
-            //         Debug.LogError(string.Format("Avatar '{0}' does not have a {1}.", nameof(avatar), nameof(PhotonView), this));
-            //         return;
-            //     }
-            //
-            //     var linkerView = MultiplayerManager.GetPhotonView(gameObject);
-            //     linkerView?.RPC(nameof(Link_RPC), RpcTarget.OthersBuffered, avatarView.ViewID);
-            // }
+            if (PhotonNetwork.InRoom && MultiplayerManager.IsLocal(gameObject))
+            {
+                var avatarView = MultiplayerManager.GetPhotonView(avatar);
+                if (avatarView == null)
+                {
+                    Debug.LogError(string.Format("Avatar '{0}' does not have a {1}.", nameof(avatar), nameof(PhotonView), this));
+                    return;
+                }
+
+                var linkerView = MultiplayerManager.GetPhotonView(gameObject);
+                linkerView?.RPC(nameof(Link_RPC), RpcTarget.OthersBuffered, avatarView.ViewID);
+            }
 
             // Parent to <see cref="avatarContainer"/>.
             var avatarRoot = avatar.transform;
@@ -61,16 +60,16 @@
             // More functionality can be added in subclasses...
         }
 
-        // /// <summary>
-        // ///     RPC for <see cref="Link(GameObject)" />.
-        // /// </summary>
-        // /// <param name="avatarViewId">ID of the avatar's <see cref="PhotonView" />.</param>
-        // [PunRPC]
-        // protected virtual void Link_RPC(int avatarViewId)
-        // {
-        //     var photonView = PhotonView.Find(avatarViewId);
-        //     Link(photonView.gameObject);
-        // }
+        /// <summary>
+        ///     RPC for <see cref="Link(GameObject)" />.
+        /// </summary>
+        /// <param name="avatarViewId">ID of the avatar's <see cref="PhotonView" />.</param>
+        [PunRPC]
+        protected virtual void Link_RPC(int avatarViewId)
+        {
+            var photonView = PhotonView.Find(avatarViewId);
+            Link(photonView.gameObject);
+        }
 
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿namespace Games.NoSoySauce.Avatars
 {
     using UnityEngine;
-    // using Photon.Pun;
-    // using Games.NoSoySauce.Networking.Multiplayer;
+    using Photon.Pun;
+    using Games.NoSoySauce.Networking.Multiplayer;
 
     /// <summary>
     /// Script responsible for assembling an avatar. This can include calibration, customization and other things.
@@ -28,14 +28,13 @@
         public virtual void AssembleAvatar(AvatarData avatarData)
         {
             // Networked call.
-            // TODO: update when MultiFrame is ready
-            // if (PhotonNetwork.InRoom && MultiplayerManager.IsLocal(gameObject))
-            // {
-            //     var assemblerView = MultiplayerManager.GetPhotonView(gameObject);
-            //     // TODO: Make it possible to serialize ScriptableObject and send it over the network
-            //     Debug.LogWarning("Here we have to send avatar data, don't forget! Need to serialize it.");
-            //     //assemblerView?.RPC(nameof(AssembleAvatar_RPC), RpcTarget.OthersBuffered, null); // avatarData); - instead of null
-            // }
+            if (PhotonNetwork.InRoom && MultiplayerManager.IsLocal(gameObject))
+            {
+                var assemblerView = MultiplayerManager.GetPhotonView(gameObject);
+                // TODO: Make it possible to serialize ScriptableObject and send it over the network
+                Debug.LogWarning("Here we have to send avatar data, don't forget! Need to serialize it.");
+                //assemblerView?.RPC(nameof(AssembleAvatar_RPC), RpcTarget.OthersBuffered, null); // avatarData); - instead of null
+            }
 
             // More functionality can be added in subclasses...
         }
@@ -44,7 +43,7 @@
         /// RPC for <see cref="AssembleAvatar_RPC(AvatarData)"/>.
         /// </summary>
         /// <param name="avatarData"><see cref="AvatarData"/> used to assemble the avatar.</param>
-        // [PunRPC]
+        [PunRPC]
         private void AssembleAvatar_RPC(AvatarData avatarData)
         {
             // TODO: Make it possible to serialize ScriptableObject and send it over the network

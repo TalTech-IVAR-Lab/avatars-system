@@ -5,7 +5,7 @@
     using Inputs.Utilities;
     using Malimbe.PropertySerializationAttribute;
     using Malimbe.XmlDocumentationAttribute;
-    using ZinniaExtensions.Action;
+    using SoyZinnia.Action;
     using UnityEngine;
     using UnityEngine.XR;
     using Zinnia.Data.Attribute;
@@ -117,17 +117,14 @@
         /// <param name="device"><see cref="InputDevice" /> to check.</param>
         private void ProcessDevice(InputDevice device)
         {
-            // If device is not valid or is not a controller, do nothing
+            // If device is not valid or is not a controller, do nothing.
             if (!device.isValid) return;
             if (!device.HasCharacteristic(InputDeviceCharacteristics.Controller)) return;
             // If device does not match the selected hand, do nothing.
             if (hand == Hand.Left && !device.HasCharacteristic(InputDeviceCharacteristics.Left)) return;
             if (hand == Hand.Right && !device.HasCharacteristic(InputDeviceCharacteristics.Right)) return;
-            
-            // Set device as active if it passed previous checks
-            ActiveDevice = device.name;
 
-            // Check if the loaded XR SDK and controller type match any of the pose overrides, and apply that override
+            // Check if the loaded XR SDK and controller type match any of the pose overrides, and apply that override.
             foreach (var modifier in modifiers)
             {
                 bool sdkMatch = Regex.IsMatch(XRSettings.loadedDeviceName.ToLower(), modifier.sdkRegex);
@@ -135,11 +132,12 @@
 
                 if (sdkMatch && controllerMatch)
                 {
-                    // If selected hand does not match the hand of the modifier, just get a mirrored pose
+                    // If selected hand does not match the hand of the modifier, just get a mirrored pose.
                     bool handMatch = hand == modifier.hand;
                     var pose = handMatch ? modifier.pose : modifier.GetMirroredPose();
 
                     ActiveModifier = modifier;
+                    ActiveDevice = device.name;
 
                     EmitPoseModifiedEvent(pose);
 

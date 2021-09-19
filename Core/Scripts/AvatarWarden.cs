@@ -2,7 +2,7 @@
 {
     using System;
     using UnityEngine;
-    // using Games.NoSoySauce.Networking.Multiplayer;
+    using Games.NoSoySauce.Networking.Multiplayer;
 
     /// <summary>
     /// This script provides methods to spawn player avatar in game.
@@ -38,40 +38,33 @@
         }
         #endregion
 
-        #region Static Variables
-        
+        #region Configuration Variables
         /// <summary>
         /// <see cref="AvatarData"/> file contains the data required for spawning the avatar.
         /// </summary>
-        [ClearOnReload]
-        public static AvatarData AvatarData { get; set; }
-        
+        public static AvatarData AvatarData { get; set; } = null;
+        #endregion
+
+        #region Runtime Variables
         /// <summary>
         /// Data structure containing references to important parts of currently spawned avatar.
         /// </summary>
-        [ClearOnReload]
-        public static PlayerAvatarReferences LocalPlayerAvatar { get; private set; }
-        
+        public static PlayerAvatarReferences LocalPlayerAvatar { get; private set; } = null;
         /// <summary>
         /// Whether the avatar is currently spawned.
         /// </summary>
         public static bool IsAvatarSpawned => (LocalPlayerAvatar?.avatar != null);
-        
         #endregion
 
         #region Delegates and Events
-        
         /// <summary>
         /// Event invoked before the avatar gets spawned.
         /// </summary>
-        [ClearOnReload]
         public static event Action<Pose> OnBeforeAvatarSpawned;
         /// <summary>
         /// Event invoked after the avatar gets spawned.
         /// </summary>
-        [ClearOnReload]
         public static event Action OnAfterAvatarSpawned;
-        
         #endregion
 
         #region Public Methods
@@ -109,8 +102,7 @@
             OnBeforeAvatarSpawned?.Invoke(spawnPose);
 
             // Set up avatar.
-            // TODO: update when MultiFrame is ready
-            var avatarInstance = new GameObject();//MultiplayerManager.Instantiate(AvatarData.avatarPrefab, spawnPose.position, spawnPose.rotation);
+            var avatarInstance = MultiplayerManager.Instantiate(AvatarData.avatarPrefab, spawnPose.position, spawnPose.rotation);
 
             var assembler = avatarInstance.GetComponentInChildren<AvatarAssembler>();
             if (assembler == null)
@@ -156,8 +148,7 @@
             }
 
             // Destroy existing avatar.
-            // TODO: update when MultiFrame is ready
-            // MultiplayerManager.Destroy(LocalPlayerAvatar.avatar);
+            MultiplayerManager.Destroy(LocalPlayerAvatar.avatar);
             LocalPlayerAvatar = null;
         }
         #endregion

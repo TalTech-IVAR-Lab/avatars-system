@@ -2,9 +2,9 @@
 {
     using System;
     using Malimbe.XmlDocumentationAttribute;
-    // using Photon.Pun;
+    using Photon.Pun;
     using RootMotion.FinalIK;
-    using TiliaExtensions.Locomotion.BodyRepresentation;
+    using SoyVRTK.Locomotion.BodyRepresentation;
     using Tilia.Interactions.Interactables.Interactors;
     using UnityEngine;
     using Zinnia.Tracking.Collision;
@@ -95,16 +95,16 @@
 
         #endregion
 
-        // /// <summary>
-        // ///     RPC for <see cref="Link(GameObject)" />.
-        // /// </summary>
-        // /// <param name="avatarViewId">ID of the avatar's <see cref="PhotonView" />.</param>
-        // [PunRPC]
-        // protected override void Link_RPC(int avatarViewId)
-        // {
-        //     Debug.Log("Avatar link request received!");
-        //     var photonView = PhotonView.Find(avatarViewId);
-        //     Link(photonView.gameObject);
-        // }
+        /// <summary>
+        ///     RPC for <see cref="Link(GameObject)" />.
+        /// </summary>
+        /// <param name="avatarViewId">ID of the avatar's <see cref="PhotonView" />.</param>
+        [PunRPC]
+        protected override void Link_RPC(int avatarViewId)
+        {
+            Debug.Log("Avatar link request received!");
+            var photonView = PhotonView.Find(avatarViewId);
+            Link(photonView.gameObject);
+        }
     }
 }

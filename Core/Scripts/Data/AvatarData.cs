@@ -1,6 +1,4 @@
-﻿using Games.NoSoySauce.Avatars.Calibration.Body;
-
-namespace Games.NoSoySauce.Avatars
+﻿namespace Games.NoSoySauce.Avatars
 {
     using System;
     using AvatarSystem;
